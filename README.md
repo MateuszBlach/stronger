@@ -1,6 +1,15 @@
 # Stronger
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+Angular application built for Android using Capacitor.
+
+## Useful commands
+
+1. `npx cap copy` 
+2. `npx cap sync android`
+
+## Working with Android
+
+1. Run `npx cap open android`
 
 ## Development server
 
