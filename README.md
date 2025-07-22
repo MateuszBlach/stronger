@@ -2,14 +2,21 @@
 
 Angular application built for Android using Capacitor.
 
-## Useful commands
-
-1. `npx cap copy` 
-2. `npx cap sync android`
-
 ## Working with Android
 
-1. Run `npx cap open android`
+1. Run to have hot reload for /dist folder 
+```bash
+npm run watch
+```
+
+2. Each time /dist folder is changed we have to sync with android using
+```bash
+npm run sync-android
+```
+
+3. Reload app in Android Studio
+
+
 
 ## Development server
 
