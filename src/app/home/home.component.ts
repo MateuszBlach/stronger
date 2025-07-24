@@ -1,8 +1,9 @@
 import {Component, WritableSignal} from '@angular/core';
-import {DatabaseService, User} from '../services/database.service';
+import { User} from '../services/database.service';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {UsersService} from '../services/users.service';
 
 
 @Component({
@@ -15,22 +16,22 @@ export class AppHomeComponent {
   users:WritableSignal<User[]>;
   newUserName = '';
 
-  constructor(private database: DatabaseService) {
-    this.users = database.getUsers();
+  constructor(private usersService: UsersService) {
+    this.users = usersService.getUsers();
   }
 
   async createUser() {
-    await this.database.addUser(this.newUserName);
+    await this.usersService.addUser(this.newUserName);
     this.newUserName = '';
   }
 
   updateUser(user: User) {
     const active = user.active ? 1 : 0;
-    this.database.updateUserById(user.id.toString(), active);
+    this.usersService.updateUserById(user.id.toString(), active);
   }
 
   deleteUser(user: User) {
-    this.database.deleteUser(user.id.toString());
+    this.usersService.deleteUser(user.id.toString());
   }
 
 }
