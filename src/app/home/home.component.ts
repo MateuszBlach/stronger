@@ -1,9 +1,9 @@
 import {Component, WritableSignal} from '@angular/core';
-import { User} from '../services/database.service';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {UsersService} from '../services/users.service';
+import {User} from '../entity/user';
 
 
 @Component({

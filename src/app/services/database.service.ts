@@ -3,12 +3,6 @@ import {CapacitorSQLite, SQLiteConnection, SQLiteDBConnection} from '@capacitor-
 
 const DB_USERS = 'myuserdb'
 
-export interface User {
-  id: string;
-  name: string;
-  active: number;
-}
-
 @Injectable({
   providedIn: 'root'
 })

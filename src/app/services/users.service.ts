@@ -1,6 +1,7 @@
 import {Injectable, signal, WritableSignal} from '@angular/core';
-import {DatabaseService, User} from './database.service';
+import {DatabaseService} from './database.service';
 import {SQLiteDBConnection} from '@capacitor-community/sqlite';
+import {User} from '../entity/user';
 
 @Injectable({
   providedIn: 'root'
