@@ -1,0 +1,59 @@
+<h2> Ingredient component </h2>
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-input
+        label="Enter name"
+        aria-label="label"
+        placeholder="name"
+        [(ngModel)]="ingredient.name"
+      ></ion-input>
+      <ion-input
+        label="Enter protein"
+        aria-label="label"
+        placeholder="protein"
+        [(ngModel)]="ingredient.protein"
+      ></ion-input>
+      <ion-input
+        label="Enter carbs"
+        aria-label="label"
+        placeholder="protein"
+        [(ngModel)]="ingredient.carbs"
+      ></ion-input>
+      <ion-input
+        label="Enter fat"
+        aria-label="label"
+        placeholder="fat"
+        [(ngModel)]="ingredient.fat"
+      ></ion-input>
+      <ion-button
+        (click)="createIngredient()"
+        fill="clear"
+        color="primary"
+      >
+        Add
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  @for (ingredient of ingredients(); track ingredient.id) {
+    <ion-item>
+      <ion-label>
+        {{ ingredient.name }} |
+        P: {{ ingredient.protein }} |
+        C: {{ ingredient.carbs }} |
+        F: {{ ingredient.fat }} |
+        kcal: {{ calculateKcal(ingredient) }}
+      </ion-label>
+      <ion-button
+        (click)="deleteIngredient(ingredient.id)"
+        fill="clear"
+        color="danger"
+      >
+        Delete
+      </ion-button>
+    </ion-item>
+  } @empty {
+    <ion-label>There are no ingredients, add one!</ion-label>
+  }
+</ion-content>
