@@ -22,13 +22,16 @@ export class DatabaseService {
 
     await this.db.open();
 
-    const schema = `CREATE TABLE IF NOT EXISTS users (
+
+    const ingredientsSchema = `CREATE TABLE IF NOT EXISTS ingredients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    active INTEGER DEFAULT 1
+    protein REAL NOT NULL,
+    carbs REAL NOT NULL,
+    fat REAL NOT NULL
   );`;
 
-    await this.db.execute(schema);
+    await this.db.execute(ingredientsSchema);
     return this.db;
   }
 
