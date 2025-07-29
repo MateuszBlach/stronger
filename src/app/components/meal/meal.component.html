@@ -1,1 +1,38 @@
-<p>meal works!</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Meals</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-input
+  label="Enter name for new meal"
+  label-placement="floating"
+  fill="outline"
+  [(ngModel)]="newMealName"
+  placeholder="Enter name">
+</ion-input>
+<ion-button
+  expand="block"
+  (click)="addNewMeal()"
+>
+  Add new Meal
+</ion-button>
+
+
+<ion-accordion-group expand="inset">
+  @for (meal of meals(); track meal.id) {
+    <ion-accordion value="'{{meal.id}}'">
+      <ion-item slot="header" color="light">
+        <ion-label>Meal: {{meal.name}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        {{meal.name}} Content
+        <ion-button
+          (click)="deleteMeal(meal.id)"
+          color="warning">
+          Delete Meal
+        </ion-button>
+      </div>
+    </ion-accordion>
+  }
+</ion-accordion-group>
