@@ -1,19 +1,17 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
 import {DatabaseService} from './services/database.service';
 import {SplashScreen} from '@capacitor/splash-screen';
 import {IngredientsService} from './services/ingredients.service';
-import {IngredientComponent} from './components/ingredient/ingredient.component';
-import {IonicModule} from '@ionic/angular';
+import {IonApp, IonRouterOutlet} from '@ionic/angular/standalone';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, IngredientComponent, IonicModule],
+  imports: [IonRouterOutlet, IonApp],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: []
 })
 export class AppComponent {
 
