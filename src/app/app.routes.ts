@@ -16,7 +16,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'ingredient',
+        redirectTo: '/tabs/ingredient',
         pathMatch: 'full'
       }
     ]
