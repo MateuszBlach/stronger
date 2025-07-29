@@ -31,7 +31,25 @@ export class DatabaseService {
     fat REAL NOT NULL
   );`;
 
+    const mealsSchema = `CREATE TABLE IF NOT EXISTS meals (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);`;
+
+    const mealIngredientsSchema = `CREATE TABLE IF NOT EXISTS meal_ingredients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    meal_id INTEGER,
+    ingredient_id INTEGER,
+    quantity REAL NOT NULL,
+    FOREIGN KEY (meal_id) REFERENCES meals(id) ON DELETE CASCADE,
+    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE
+);`;
+
+
     await this.db.execute(ingredientsSchema);
+    await this.db.execute(mealsSchema);
+    await this.db.execute(mealIngredientsSchema);
+
     return this.db;
   }
 
