@@ -3,30 +3,71 @@
     <ion-title>Meals</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-list>
+  <ion-input
+    label="Enter name for new meal"
+    label-placement="floating"
+    fill="outline"
+    [(ngModel)]="newMealName"
+    placeholder="Enter name">
+  </ion-input>
+</ion-list>
 
-<ion-input
-  label="Enter name for new meal"
-  label-placement="floating"
-  fill="outline"
-  [(ngModel)]="newMealName"
-  placeholder="Enter name">
-</ion-input>
 <ion-button
-  expand="block"
   (click)="addNewMeal()"
 >
   Add new Meal
 </ion-button>
 
 
-<ion-accordion-group expand="inset">
+<ion-accordion-group expand="inset" [multiple]="false" (ionChange)="accordionGroupChange($event)">
   @for (meal of meals(); track meal.id) {
     <ion-accordion value="'{{meal.id}}'">
       <ion-item slot="header" color="light">
-        <ion-label>Meal: {{meal.name}}</ion-label>
+        <ion-label>Meal: {{ meal.name }}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
-        {{meal.name}} Content
+        {{ meal.name }} Content
+        <ion-item>
+          <ion-select
+            aria-label="Ingredients"
+            placeholder="Select Ingredients for your new meal"
+            [(ngModel)]="selectedIngredients"
+            (ngModelChange)="onSelectedIngredientsChange()"
+            [multiple]="true">
+            @for (ingredient of ingredients(); track ingredient.id) {
+              <ion-select-option [value]="ingredient">
+                {{ingredient.name}}
+              </ion-select-option>
+            }
+          </ion-select>
+
+        </ion-item>
+
+        <ion-list>
+          @for (mealIngredient of mealIngredients; track mealIngredient.ingredient.id) {
+            <ion-item>
+              <ion-label>{{ mealIngredient.ingredient.name }}   </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="mealIngredient.quantity"
+                placeholder="Enter quantity">
+              </ion-input>
+              <ion-label>Kcal: {{kcalService.calculateKcal(mealIngredient.ingredient,mealIngredient.quantity)}}</ion-label>
+            </ion-item>
+          } @empty {
+            <ion-item>
+              <ion-label>Select some ingredients for your new meal</ion-label>
+            </ion-item>
+          }
+        </ion-list>
+
+        <ion-button
+          (click)="addMealIngredients()"
+          color="primary"
+        >Add Ingredients</ion-button>
+
+
         <ion-button
           (click)="deleteMeal(meal.id)"
           color="warning">
